@@ -2,15 +2,18 @@ import { Send } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { isEmpytOrWhiteSpace } from "@/lib";
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { useChatStore } from "@/stores/chatStore";
 
 const PromptInput = ({
   handleSubmit,
 }: {
-  handleSubmit: (value: string) => Promise<void>;
+  handleSubmit: () => void;
 }) => {
-  const [prompt, setPrompt] = useState("");
+  const prompt = useChatStore((state) => state.prompt);
+  const updatePrompt = useChatStore((state) => state.updatePrompt);
+
   const { toast } = useToast();
   const handleKeyUp = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -23,7 +26,7 @@ const PromptInput = ({
         });
         return;
       } else {
-        handleSubmit(prompt);
+        handleSubmit();
       }
     }
   };
@@ -37,14 +40,15 @@ const PromptInput = ({
       });
       return;
     }
-    handleSubmit(prompt);
+    handleSubmit();
   };
   return (
-    <div className="flex border rounded-lg p-2 space-x-2">
+    <div className="flex border rounded-lg p-2 space-x-2 bg-white">
       <Textarea
         className="resize-none border-none ring-0 outline-none focus-visible:ring-0 shadow-none h-20"
         placeholder="请输入您的问题，Shift+Enter换行，Enter发送"
-        onChange={(e) => setPrompt(e.target.value)}
+        value={prompt}
+        onChange={(e) => updatePrompt(e.target.value)}
         onKeyDown={handleKeyUp}
       />
 

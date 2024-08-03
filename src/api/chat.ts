@@ -1,3 +1,4 @@
+import { generateToken } from "@/lib/token"
 import { IChatReq } from "@/types/chat"
 import { fetchEventSource } from "@fortaine/fetch-event-source"
 
@@ -10,7 +11,9 @@ export const chat = async (req: IChatReq) => {
 }
 
 const chatStream = async (req: IChatReq) => {
-    await fetchEventSource('', {
+    const token = generateToken()
+    await fetchEventSource('https://open.bigmodel.cn/api/paas/v4/chat/completions', {
+        method: 'POST',
         signal: req.signal,
         openWhenHidden: true,
         onopen: req.onopen,
@@ -19,7 +22,8 @@ const chatStream = async (req: IChatReq) => {
         onclose: req.onclose,
         body: JSON.stringify(req.message),
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         }
     })
 }

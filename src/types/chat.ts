@@ -11,6 +11,11 @@ export interface IMessage extends IChatMessage {
     id?: string
 }
 
+interface LlmReq {
+    model: string,
+    messages: IChatMessage []
+}
+
 export interface IChatReq {
     stream: boolean,
     signal: AbortSignal,
@@ -18,5 +23,5 @@ export interface IChatReq {
     onmessage: (ev: EventSourceMessage) => void,
     onerror: (err: unknown) => void,
     onclose: () => void,
-    message: IMessage
+    message: LlmReq
 }

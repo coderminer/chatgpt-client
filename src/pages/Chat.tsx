@@ -41,11 +41,24 @@ const Chat = () => {
 
   const handleSend = async () => {
     console.log("prompt: ", prompt);
+    updateMessage({
+      id: nanoid(),
+      role: "system",
+      content: `Hi，我是 Kimi～
+很高兴遇见你！你可以随时把网址🔗或者文件📃发给我，我来帮你看看`,
+    });
     updateMessage({ id: nanoid(), role: "user", content: prompt });
     updateMessage({
       id: nanoid(),
       role: "assistant",
-      content: "the ai answer",
+      content: `在JavaScript中，instanceof 运算符用于测试构造函数的 prototype 属性是否出现在对象的原型链中的任何位置。如果右侧的值不是一个对象，或者不是一个函数，那么它将抛出一个错误。
+
+错误信息 "Right-hand side of 'instanceof' is not an object" 表示你尝试使用 instanceof 运算符，但是右侧的值不是一个有效的对象。这通常发生在以下几种情况：
+
+右侧是一个 null 或者 undefined 值。
+右侧是一个原始类型（如数字、字符串或布尔值），而不是一个对象。
+右侧是一个函数，但它不是构造函数。
+例如：`,
     });
     updatePrompt("");
 

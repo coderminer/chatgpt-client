@@ -1,6 +1,6 @@
 import { EventSourceMessage } from "@fortaine/fetch-event-source"
 
-type Role = 'user' | 'assistant' | 'system' | 'loading' | 'error'
+export type Role = 'user' | 'assistant' | 'system' | 'loading' | 'error'
 
 export interface IChatMessage {
     role: Role,

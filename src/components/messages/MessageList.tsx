@@ -1,5 +1,6 @@
 import { IMessage } from "@/types/chat";
 import MessageBox from "./MessageBox";
+import { ScrollArea } from "../ui/scroll-area";
 
 const MessageList = ({ messages }: { messages: IMessage[] }) => {
   return (

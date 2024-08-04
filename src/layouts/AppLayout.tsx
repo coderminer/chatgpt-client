@@ -1,19 +1,31 @@
-import React from 'react'
-import Header from './Header';
-import Footer from './Footer';
+import React, { useRef } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 import { Toaster } from "@/components/ui/toaster";
+import { useSize } from "ahooks";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
+  const headerRef = useRef(null);
+  const footerRef = useRef(null);
+  const headerSize = useSize(headerRef);
+  const footerSize = useSize(footerRef);
+  const height = ((headerSize?.height || 0) + (footerSize?.height || 0))
+  console.log(headerSize)
   return (
     <div className="h-full flex flex-col">
-      <Header />
-      <main className="flex-1 bg-[#f3f5fa]">
-        { children }
+      <Header ref={headerRef} />
+      <main
+        className="bg-[#f3f5fa]"
+        style={{
+          height: `calc(100% - ${height}px)`,
+        }}
+      >
+        {children}
       </main>
       <Toaster />
-      <Footer />
+      <Footer ref={footerRef} />
     </div>
   );
-}
+};
 
-export default AppLayout
+export default AppLayout;

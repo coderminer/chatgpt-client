@@ -4,8 +4,13 @@ import { EventSourceMessage } from "@fortaine/fetch-event-source";
 import { useChatStore } from "@/stores/chatStore";
 import { nanoid } from "nanoid";
 import MessageList from "@/components/messages/MessageList";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useRef } from "react";
+import { useSize } from "ahooks";
 
 const Chat = () => {
+  const bottomRef = useRef(null)
+  const bottomSize = useSize(bottomRef)
   const prompt = useChatStore((state) => state.prompt);
   const messages = useChatStore((state) => state.messages);
   const updatePrompt = useChatStore((state) => state.updatePrompt);
@@ -65,11 +70,13 @@ const Chat = () => {
     console.log("msgs: ", messages);
   };
   return (
-    <div className="flex flex-col max-w-4xl mx-auto h-full p-2">
-      <div className="flex-1">
-        <MessageList messages={messages} />
+    <div className="flex flex-col max-w-4xl mx-auto h-full p-2 space-y-2">
+      <div style={{ height: `calc(100% - ${(bottomSize?.height || 0) + 8}px)` }}>
+        <ScrollArea className="h-full">
+          <MessageList messages={messages} />
+        </ScrollArea>
       </div>
-      <div>
+      <div ref={bottomRef}>
         <PromptInput handleSubmit={handleSend} />
       </div>
     </div>

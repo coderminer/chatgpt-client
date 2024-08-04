@@ -1,5 +1,11 @@
-const Footer = () => {
-  return <footer className=" bg-green-200">Footer</footer>;
-}
+import { forwardRef } from "react";
 
-export default Footer
+const Footer = forwardRef<HTMLElement>((props, ref) => {
+  return (
+    <footer className=" bg-green-200 h-10" ref={ref} {...props}>
+      Footer
+    </footer>
+  );
+});
+
+export default Footer;

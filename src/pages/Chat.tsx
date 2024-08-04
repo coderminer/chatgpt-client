@@ -39,6 +39,7 @@ const Chat = () => {
     console.log("close");
   };
 
+  
   const handleChat = async () => {
     ctrl = new AbortController();
     await chat({
@@ -141,6 +142,8 @@ ReactDOM.render(
     updatePrompt("");
 
     console.log("msgs: ", messages);
+
+    handleChat()
   };
 
   useEffect(() => {

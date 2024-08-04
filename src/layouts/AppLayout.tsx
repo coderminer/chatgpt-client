@@ -15,9 +15,9 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="h-full flex flex-col">
       <Header ref={headerRef} />
       <main
-        className="bg-[#f3f5fa]"
+        className="bg-[#f3f5fa] dark:bg-background"
         style={{
-          height: `calc(100% - ${height}px)`,
+          height: `calc(100% - ${height+4}px)`,
         }}
       >
         {children}

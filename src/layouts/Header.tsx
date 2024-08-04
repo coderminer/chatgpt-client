@@ -6,7 +6,7 @@ const Header = forwardRef<HTMLElement>((props, ref) => {
   const { theme, setTheme } = useTheme();
   return (
     <header
-      className="flex h-12 justify-between items-center"
+      className="flex h-12 justify-between items-center dark:border-b dark:border-zinc-50/20"
       ref={ref}
       {...props}
     >

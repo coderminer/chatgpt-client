@@ -21,7 +21,7 @@ export const MessageIcon = ({
   return (
     <div
       className={cn(
-        "rounded-full shadow-lg w-12 h-12 flex items-center justify-center",
+        "rounded-full w-12 h-12 flex items-center justify-center dark:shadow-zinc-100",
         className
       )}
     >
@@ -42,7 +42,7 @@ export const MessageContent = ({
   return (
     <div
       className={cn(
-        "p-3 rounded-lg shadow whitespace-pre-wrap min-h-12 leading-7",
+        "p-3 rounded-lg shadow-sm whitespace-pre-wrap min-h-12 leading-7 dark:bg-background dark:shadow-zinc-100",
         className
       )}
       style={{ ...style }}

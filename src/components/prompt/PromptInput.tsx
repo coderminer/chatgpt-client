@@ -43,7 +43,7 @@ const PromptInput = ({
     handleSubmit();
   };
   return (
-    <div className="flex border rounded-lg p-2 space-x-2 bg-white">
+    <div className="flex border rounded-lg p-2 space-x-2 bg-white dark:bg-background">
       <Textarea
         className="resize-none border-none ring-0 outline-none focus-visible:ring-0 shadow-none h-20"
         placeholder="请输入您的问题，Shift+Enter换行，Enter发送"
@@ -63,7 +63,7 @@ const PromptInput = ({
           disabled={isEmpytOrWhiteSpace(prompt)}
           className={`${
             isEmpytOrWhiteSpace(prompt)
-              ? "bg-gray-100"
+              ? "bg-gray-100 dark:bg-gray-700 dark:text-white"
               : "bg-indigo-600 text-white"
           }`}
           onClick={handleSend}

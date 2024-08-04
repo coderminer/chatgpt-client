@@ -46,12 +46,6 @@ const Chat = () => {
 
   const handleSend = async () => {
     console.log("prompt: ", prompt);
-    updateMessage({
-      id: nanoid(),
-      role: "system",
-      content: `Hi，我是 Kimi～
-很高兴遇见你！你可以随时把网址🔗或者文件📃发给我，我来帮你看看`,
-    });
     updateMessage({ id: nanoid(), role: "user", content: prompt });
     updateMessage({
       id: nanoid(),
@@ -70,13 +64,13 @@ const Chat = () => {
     console.log("msgs: ", messages);
   };
   return (
-    <div className="flex flex-col max-w-4xl mx-auto h-full p-2 space-y-2">
-      <div style={{ height: `calc(100% - ${(bottomSize?.height || 0) + 8}px)` }}>
+    <div className="flex flex-col max-w-4xl mx-auto h-full p-2">
+      <div style={{ height: `calc(100% - ${(bottomSize?.height || 0) + 16}px)` }}>
         <ScrollArea className="h-full">
           <MessageList messages={messages} />
         </ScrollArea>
       </div>
-      <div ref={bottomRef}>
+      <div ref={bottomRef} className="mt-4">
         <PromptInput handleSubmit={handleSend} />
       </div>
     </div>

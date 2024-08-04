@@ -25,3 +25,10 @@ export interface IChatReq {
     onclose: () => void,
     message: LlmReq
 }
+
+
+export interface IChatHistory {
+    id: string,
+    title: string,
+    time: string
+}

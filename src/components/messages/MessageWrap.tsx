@@ -21,7 +21,7 @@ export const MessageIcon = ({
   return (
     <div
       className={cn(
-        "rounded-full w-12 h-12 flex items-center justify-center dark:shadow-zinc-100",
+        "rounded-full w-10 h-10 flex items-center justify-center dark:shadow-md dark:shadow-zinc-50/50",
         className
       )}
     >

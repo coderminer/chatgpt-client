@@ -9,7 +9,7 @@ const AssistantMessage = ({ msg }: { msg: IMessage }) => {
       </MessageIcon>
       <MessageContent
         className="bg-white"
-        style={{ width: "calc(100% - 7rem)" }}
+        style={{ width: "calc(100% - 6rem)" }}
       >
         {msg.content}
       </MessageContent>

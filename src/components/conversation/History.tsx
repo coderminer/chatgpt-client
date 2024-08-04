@@ -1,4 +1,3 @@
-import React from "react";
 import HistoryHeader from "./HistoryHeader";
 import ChatList from "./ChatList";
 

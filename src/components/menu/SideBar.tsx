@@ -27,6 +27,7 @@ const SideBar = () => {
   const isLogin = useAuthStore((state) => state.isLogin);
   const updateLogin = useAuthStore((state) => state.updateLogin);
   const updateHistory = useChatStore((state) => state.updateHistory);
+  const updateActiveId = useChatStore((state) => state.updateActiveId);
   const handleLogin = () => {
     if (!isLogin) {
       setShow(true);
@@ -48,7 +49,10 @@ const SideBar = () => {
                   variant="ghost"
                   size="icon"
                   className="hover:bg-indigo-500 hover:text-white w-10 h-10"
-                  onClick={startNewChat}
+                  onClick={() => {
+                    startNewChat();
+                    updateActiveId("");
+                  }}
                 >
                   <MessageCirclePlus className="w-6 h-6" />
                 </Button>

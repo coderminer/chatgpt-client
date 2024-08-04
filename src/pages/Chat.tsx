@@ -18,6 +18,10 @@ const Chat = () => {
   const messages = useChatStore((state) => state.messages);
   const updatePrompt = useChatStore((state) => state.updatePrompt);
   const updateMessage = useChatStore((state) => state.updateMessage);
+  const activeId = useChatStore((state) => state.activeId);
+  const updateActiveId = useChatStore((state) => state.updateActiveId);
+  const updateChats = useChatStore((state) => state.updateChats);
+
   const ctrl = new AbortController();
   const onOpen = async (res: Response) => {
     console.log("res:", res);
@@ -49,6 +53,11 @@ const Chat = () => {
 
   const handleSend = async () => {
     console.log("prompt: ", prompt);
+    if (!activeId) {
+      const id = nanoid();
+      updateActiveId(id);
+      updateChats({ id, title: prompt, time: new Date().toDateString() });
+    }
     updateMessage({
       id: nanoid(),
       role: "user",
@@ -103,9 +112,9 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView(false)
+    scrollRef.current?.scrollIntoView(false);
   }, [messages]);
-  
+
   return (
     <div className="flex flex-col max-w-4xl h-full w-full p-2">
       <div

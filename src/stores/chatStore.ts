@@ -22,7 +22,7 @@ type Action = {
 
 const systemMessage: IMessage = {
     id: nanoid(), role: 'system', content: `Hi，我是 Kimi～
-很高兴遇见你！你可以随时把网址🔗或者文件📃发给我，我来帮你看看`}
+很高兴遇见你！`}
 
 
 export const useChatStore = create<State & Action>((set) => ({

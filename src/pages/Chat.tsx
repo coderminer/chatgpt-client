@@ -22,7 +22,7 @@ const Chat = () => {
   const updateActiveId = useChatStore((state) => state.updateActiveId);
   const updateChats = useChatStore((state) => state.updateChats);
 
-  const ctrl = new AbortController();
+  let ctrl = new AbortController();
   const onOpen = async (res: Response) => {
     console.log("res:", res);
   };
@@ -40,6 +40,7 @@ const Chat = () => {
   };
 
   const handleChat = async () => {
+    ctrl = new AbortController();
     await chat({
       signal: ctrl.signal,
       stream: true,
@@ -105,6 +106,37 @@ const Chat = () => {
 右侧是一个原始类型（如数字、字符串或布尔值），而不是一个对象。
 右侧是一个函数，但它不是构造函数。
 例如：`,
+    });
+    updateMessage({
+      id: nanoid(),
+      role: "assistant",
+      content: `
+
+\`\`\`js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Markdown from 'react-markdown'
+import MyFancyRule from './components/my-fancy-rule.js'
+
+ReactDOM.render(
+  <Markdown
+    components={{
+      // Use h2s instead of h1s
+      h1: 'h2',
+      // Use a component instead of hrs
+      hr(props) {
+        const {node, ...rest} = props
+        return <MyFancyRule {...rest} />
+      }
+    }}
+  >
+    {markdown}
+  </Markdown>,
+  document.querySelector('#content')
+)
+\`\`\`
+
+`,
     });
     updatePrompt("");
 

@@ -42,7 +42,7 @@ export const MessageContent = ({
   return (
     <div
       className={cn(
-        "p-3 rounded-lg shadow-sm whitespace-pre-wrap min-h-12 leading-7 dark:bg-background dark:shadow-zinc-100",
+        "p-3 rounded-lg shadow-sm whitespace-pre-wrap min-h-12 leading-7 dark:bg-background dark:shadow-zinc-100/20",
         className
       )}
       style={{ ...style }}

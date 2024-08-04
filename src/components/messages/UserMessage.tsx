@@ -5,11 +5,11 @@ import { MessageContent, MessageIcon, MessageItem } from "./MessageWrap";
 const UserMessage = ({ msg }: { msg: IMessage }) => {
   return (
     <MessageItem className="flex-row-reverse">
-      <MessageIcon className="bg-chat text-black">
+      <MessageIcon className="bg-slate-300 text-black">
         <User />
       </MessageIcon>
       <MessageContent
-        className="bg-chat"
+        className="bg-indigo-700 text-white"
         style={{ maxWidth: "calc(100% - 7rem)" }}
       >
         {msg.content}

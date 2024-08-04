@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { useSize } from "ahooks";
+import SideBar from "@/components/menu/SideBar";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const headerRef = useRef(null);
@@ -15,12 +16,13 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="h-full flex flex-col">
       <Header ref={headerRef} />
       <main
-        className="bg-[#f3f5fa] dark:bg-background"
+        className="bg-[#f3f5fa] dark:bg-background relative"
         style={{
           height: `calc(100% - ${height+4}px)`,
         }}
       >
         {children}
+        <SideBar />
       </main>
       <Toaster />
       <Footer ref={footerRef} />

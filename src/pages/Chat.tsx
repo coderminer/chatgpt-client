@@ -107,7 +107,7 @@ const Chat = () => {
   }, [messages]);
   
   return (
-    <div className="flex flex-col max-w-4xl mx-auto h-full p-2">
+    <div className="flex flex-col max-w-4xl h-full w-full p-2">
       <div
         style={{ height: `calc(100% - ${(bottomSize?.height || 0) + 16}px)` }}
       >

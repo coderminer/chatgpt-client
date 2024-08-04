@@ -26,6 +26,7 @@ const SideBar = () => {
   const startNewChat = useChatStore((state) => state.startMewChat);
   const isLogin = useAuthStore((state) => state.isLogin);
   const updateLogin = useAuthStore((state) => state.updateLogin);
+  const updateHistory = useChatStore((state) => state.updateHistory);
   const handleLogin = () => {
     if (!isLogin) {
       setShow(true);
@@ -33,10 +34,7 @@ const SideBar = () => {
     }
   };
   return (
-    <div
-      className="absolute left-4 top-1/2 w-16 bg-white -translate-y-1/2 rounded-full flex-col 
-        items-center py-8 space-y-4 shadow-md dark:bg-background dark:shadow-zinc-50/20 hidden sm:flex"
-    >
+    <div className="w-16 bg-white h-fit rounded-full flex-col items-center py-8 space-y-4 shadow-md dark:bg-background dark:shadow-zinc-50/20 hidden sm:flex">
       <Avatar>
         <AvatarImage src={logo} />
         <AvatarFallback>L</AvatarFallback>
@@ -69,6 +67,7 @@ const SideBar = () => {
                   variant="ghost"
                   size="icon"
                   className="hover:bg-indigo-500 hover:text-white w-10 h-10"
+                  onClick={() => updateHistory(true)}
                 >
                   <ScrollText className="w-6 h-6" />
                 </Button>

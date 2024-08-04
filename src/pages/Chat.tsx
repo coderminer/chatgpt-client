@@ -5,12 +5,15 @@ import { useChatStore } from "@/stores/chatStore";
 import { nanoid } from "nanoid";
 import MessageList from "@/components/messages/MessageList";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSize } from "ahooks";
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
 const Chat = () => {
-  const bottomRef = useRef(null)
-  const bottomSize = useSize(bottomRef)
+  const bottomRef = useRef(null);
+  const bottomSize = useSize(bottomRef);
+  const scrollRef =
+    useRef<React.ElementRef<typeof ScrollAreaPrimitive.Root>>(null);
   const prompt = useChatStore((state) => state.prompt);
   const messages = useChatStore((state) => state.messages);
   const updatePrompt = useChatStore((state) => state.updatePrompt);
@@ -63,11 +66,20 @@ const Chat = () => {
 
     console.log("msgs: ", messages);
   };
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView(false)
+  }, [messages]);
+  
   return (
     <div className="flex flex-col max-w-4xl mx-auto h-full p-2">
-      <div style={{ height: `calc(100% - ${(bottomSize?.height || 0) + 16}px)` }}>
+      <div
+        style={{ height: `calc(100% - ${(bottomSize?.height || 0) + 16}px)` }}
+      >
         <ScrollArea className="h-full">
-          <MessageList messages={messages} />
+          <div ref={scrollRef}>
+            <MessageList messages={messages} />
+          </div>
         </ScrollArea>
       </div>
       <div ref={bottomRef} className="mt-4">

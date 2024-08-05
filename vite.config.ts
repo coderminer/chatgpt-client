@@ -26,11 +26,25 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return id
+            let split = 'node_modules/'
+            if (id.includes('.pnpm/')) {
+              split += '.pnpm/'
+            }
+            const name = id
               .toString()
-              .split('node_modules/')[1]
+              .split(split)[1]
               .split('/')[0]
               .toString();
+            
+            if (name.includes('react')) {
+              return 'react-vendor'
+            } else if (name.includes('jsonwebtoken')) {
+              return 'encryption'
+            } else if(name.includes('refractor')) {
+              return 'highlight'
+            } else {
+              return 'vendor'
+            }
           }
         },
         entryFileNames: 'js/[name].[hash].js',
